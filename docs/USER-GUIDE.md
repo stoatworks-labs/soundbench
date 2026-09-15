@@ -7,6 +7,10 @@ the input is, and which buffer sizes the interface runs cleanly at. Alongside ev
 measurement it shows what the driver *claims*, because the difference is often the
 finding.
 
+![SoundBench's Buffer stability tab after a full run: nine buffer sizes, each clean, with measured and claimed latency](screenshots/buffer-stability.png)
+
+*The Buffer stability tab after a full run against Pro Tools Audio Bridge — a virtual CoreAudio loopback, not a hardware interface, which is why every size comes back clean and the round trip is exactly the buffer. Nine sizes from 16 to 4096 frames, each checked for xruns, for glitches in the recorded tone, and for the latency the driver claims against the one measured.*
+
 ## Before you start
 
 **Make a loop.** Connect an output of the interface to an input with a cable. Analogue is
