@@ -23,8 +23,9 @@ Windows with ASIO: append `-- --features asio` to the tauri commands, or
 ## Release
 
 `.github/workflows/desktop.yml` builds on a `v*` tag: macOS universal (unsigned — the fleet's
-autosign agent notarises after publishing), Linux deb/rpm, Windows NSIS with ASIO. Bump the
-version in `package.json`, `src-tauri/tauri.conf.json` and `src-tauri/Cargo.toml` together.
+autosign agent notarises after publishing), Linux deb/rpm, Windows NSIS — with ASIO only once
+the repo variable `SOUNDBENCH_ASIO` is `true` (docs/asio.md). Bump the version in
+`package.json`, `src-tauri/tauri.conf.json` and `src-tauri/Cargo.toml` together.
 
 ## Verifying against a device
 
