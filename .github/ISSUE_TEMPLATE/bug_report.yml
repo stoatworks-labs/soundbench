@@ -67,6 +67,7 @@ body:
         one is purely local.
       placeholder: "d&b D80, firmware 2.14, on a flat VLAN with the laptop"
 
+
   - type: textarea
     id: logs
     attributes:

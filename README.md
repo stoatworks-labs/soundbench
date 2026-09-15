@@ -151,6 +151,10 @@ src-tauri/
 
 `AGENTS.md` explains the model and the traps; `CLAUDE.md` is the command reference.
 
+<!-- attributions:start -->
+This project is built on other people's work — see [ATTRIBUTIONS.md](ATTRIBUTIONS.md).
+<!-- attributions:end -->
+
 ## Licence
 
 MIT. PortAudio is MIT-licensed and vendored under `src-tauri/crates/pa-sys/vendor/portaudio`

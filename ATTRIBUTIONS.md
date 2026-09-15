@@ -3,32 +3,22 @@
 SoundBench is built on other people's work. This file lists what that work is, who did
 it, and what it is doing here.
 
+It is generated — the master lists live in the `stoatworks-backend` repo and are
+pushed out by `scripts/sync-attributions.py`. Edit it there, not here.
+
 ## Third-party code this project uses
+
+Libraries, SDKs and frameworks the project is built on or bundles.
 
 ### PortAudio
 
 <http://www.portaudio.com>  
-Licence: MIT (PortAudio Portable Real-Time Audio Library)  
-Copyright: 1999–2024 Ross Bencina and Phil Burk
+Licence: MIT (PortAudio Portable Real-Time Audio Library licence)  
+Copyright: 1999-2006 Ross Bencina and Phil Burk
 
-Vendored at `src-tauri/crates/pa-sys/vendor/portaudio`, a snapshot of upstream master at
-commit `a4dbf68c51fd32734f32657db64849aac24739e7` (2026-09-04), trimmed to the sources,
-headers and CMake files (no bindings, tests, examples or documentation), and built from
-source by `pa-sys/build.rs`.
+Vendored under src-tauri/crates/pa-sys/vendor/portaudio as a pinned snapshot of upstream master (a4dbf68c, 2026-09-04), trimmed to sources, headers and CMake files, and built from source by the crate's build.rs.
 
-The whole device layer. PortAudio is what reaches CoreAudio, ASIO, WASAPI, WDM-KS,
-DirectSound, MME and ALSA through one callback, and its duplex callback is what puts the
-recording on the same frame clock as the signal played.
-
-### Steinberg ASIO SDK
-
-<https://www.steinberg.net/developers/>  
-Licence: Steinberg ASIO SDK Licensing Agreement  
-Copyright: Steinberg Media Technologies GmbH
-
-Not included in this repository. A Windows build with the `asio` feature has PortAudio's
-CMake download it at configure time and link it. ASIO is a trademark and software of
-Steinberg Media Technologies GmbH. See docs/asio.md.
+The whole device layer: one callback that reaches CoreAudio, ASIO, WASAPI, WDM-KS, DirectSound, MME and ALSA, and whose duplex form puts the recording on the same frame clock as the signal played.
 
 ### Tauri
 
@@ -36,8 +26,9 @@ Steinberg Media Technologies GmbH. See docs/asio.md.
 Licence: MIT or Apache-2.0  
 Copyright: The Tauri Programme within The Commons Conservancy
 
-A Cargo and npm dependency. Puts the web front end on the Rust core in the platform's own
-webview.
+A Cargo and npm dependency.
+
+Puts a web front end on a native Rust core using the platform's own webview, so the binary stays small and the DSP stays in Rust.
 
 ### React
 
@@ -45,34 +36,44 @@ webview.
 Licence: MIT  
 Copyright: Meta Platforms, Inc. and affiliates
 
-An npm dependency. The UI layer.
+An npm dependency.
 
-### rustfft and realfft
+The UI layer for the browser tools and the Electron and Tauri front ends.
 
-<https://github.com/ejmahler/RustFFT> · <https://github.com/HEnquist/realfft>  
-Licence: MIT or Apache-2.0  
-Copyright: Elliott Mahler; Henrik Enquist
+### The Rust crate ecosystem
 
-Cargo dependencies. Every transform in the DSP crate.
+<https://crates.io>  
+Licence: predominantly MIT or Apache-2.0  
+Copyright: the individual crate authors
 
-### The Rust and npm ecosystems
+Cargo dependencies, resolved and pinned in Cargo.lock.
 
-Libraries resolved and pinned in `src-tauri/Cargo.lock` and `package-lock.json`, which are
-the authoritative lists.
+Async runtimes, protocol codecs, serialisation and GUI toolkits. The exact set and versions for any build are in that repo's Cargo.lock, which is the authoritative list.
 
-## Methods and published specifications
+### The npm ecosystem
 
-- **Angelo Farina, "Simultaneous measurement of impulse response and distortion with a
-  swept-sine technique"** (AES 108th Convention, 2000) — the log-sweep deconvolution the
-  response and THD-against-frequency measurements use.
-- **AES17** — the measurement band and the −1 dBFS level for THD+N.
-- **Hans-Helge Albrecht, "A family of cosine-sum windows for high-resolution measurements"**
-  (ICASSP 2001) — the seven-term window under the tone analysis.
-- **IEC 61672** — the A-weighting curve.
-- **Charles Knapp and G. Clifford Carter, "The generalized correlation method for estimation
-  of time delay"** (1976) — the phase transform used to align the noise stimulus.
+<https://www.npmjs.com>  
+Licence: predominantly MIT  
+Copyright: the individual package authors
+
+npm dependencies, resolved and pinned in the lockfile.
+
+Build tooling, test runners and the libraries the front ends are assembled from. The exact set and versions for any build are in that repo's lockfile, which is the authoritative list.
+
+The full transitive dependency set for any build is pinned in this repo's lockfile,
+which is the authoritative list. What is named above is the layers a reader would
+want to know about, not every package that has ever been resolved.
+
+## Standards and published specifications
+
+What the implementation is measured against.
+
+- **Angelo Farina, "Simultaneous measurement of impulse response and distortion with a swept-sine technique" (AES 108th Convention, 2000)** — The log-sweep deconvolution the response, phase and THD-against-frequency measurements use: the harmonic distortion of order k lands L·ln(k) before the linear impulse response and is windowed out separately.
+- **AES17** — The 20 Hz–20 kHz band and the −1 dBFS level for THD+N.
+- **Hans-Helge Albrecht, "A family of cosine-sum windows for high-resolution measurements" (ICASSP 2001)** — The seven-term window under the tone analysis, whose sidelobes sit below −180 dB.
+- **IEC 61672** — The A-weighting curve applied to the noise floor.
+- **C. H. Knapp and G. C. Carter, "The generalized correlation method for estimation of time delay" (IEEE Trans. ASSP, 1976)** — The phase transform (GCC-PHAT) used to align the noise stimulus with its recording.
 
 ## Getting this wrong
 
-If your work is here and the description is inaccurate, the licence is wrong, or you would
-rather not be listed — open an issue and it will be fixed.
+If your work is here and the description is inaccurate, the licence is wrong, or you would rather not be listed — open an issue and it will be fixed.
