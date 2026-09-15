@@ -99,9 +99,9 @@ further.
 
 - **Measurements:** every analysis in `soundbench-dsp` has tests against a simulated loopback
   (delay, gain, one-pole filter, cubic and quadratic distortion, noise, inversion) that check the
-  numbers come out — 35 of them.
+  numbers come out — 36 of them.
 - **macOS:** the whole bench has run end to end through a CoreAudio loopback device: latency
-  reads exactly three buffers at every buffer size from 32 to 4096, the response is flat to
+  reads exactly three buffers at every buffer size from 16 to 4096, the response is flat to
   0.01 dB, THD reads its floor, and the stability sweep is clean at every size. The HAL
   property list has been read on a Yamaha DM3 (USB) and on virtual devices. No physical
   loopback cable has been through it yet — the DM3 had none connected — so the analogue path
