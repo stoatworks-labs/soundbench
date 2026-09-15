@@ -58,8 +58,9 @@ Mac, shared-mode WASAPI on Windows, never ASIO — and cannot set a device's buf
 
 ## Running it
 
-Download the build for your platform from the [releases](https://github.com/stoatworks-labs/soundbench/releases),
-or build it:
+Builds for macOS (universal), Windows and Linux are published on the
+[releases page](https://github.com/stoatworks-labs/soundbench/releases) when a version is
+tagged — none has been yet. Until then, build it:
 
 ```bash
 npm install
