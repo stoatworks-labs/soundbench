@@ -35,6 +35,10 @@ with a cable, and SoundBench tells you what the driver claims and what the hardw
 
 Every test is a report — Markdown for people, JSON with every curve for machines.
 
+![SoundBench's Buffer stability tab after a full run: nine buffer sizes, each clean, with measured and claimed latency](docs/screenshots/buffer-stability.png)
+
+<sub>The Buffer stability tab after a full run against Pro Tools Audio Bridge — a virtual CoreAudio loopback, not a hardware interface, which is why every size comes back clean and the round trip is exactly the buffer. Nine sizes from 16 to 4096 frames, each checked for xruns, for glitches in the recorded tone, and for the latency the driver claims against the one measured.</sub>
+
 ## Which drivers
 
 SoundBench is a desktop app built on a vendored [PortAudio](http://www.portaudio.com), compiled
