@@ -3,7 +3,7 @@
  * rate and buffer. Everything a test needs to know about *where* to run.
  */
 import { devicesOfHost, TEST_NAMES, TEST_ORDER, useStore } from '../store';
-import type { DeviceDetail, DeviceInfo } from '../types';
+import type { DeviceInfo } from '../types';
 import { Field } from './ui';
 
 function deviceLabel(d: DeviceInfo): string {
@@ -11,7 +11,7 @@ function deviceLabel(d: DeviceInfo): string {
   return `${d.name} (${io})`;
 }
 
-function ChannelPicker({ detail, count, selected, names, onToggle, label }: { detail: DeviceDetail | null; count: number; selected: number[]; names: string[]; onToggle: (c: number) => void; label: string }) {
+function ChannelPicker({ count, selected, names, onToggle, label }: { count: number; selected: number[]; names: string[]; onToggle: (c: number) => void; label: string }) {
   if (count <= 0) return null;
   const many = count > 8;
   return (
@@ -30,7 +30,6 @@ function ChannelPicker({ detail, count, selected, names, onToggle, label }: { de
           </button>
         ))}
       </div>
-      {detail?.notes.length ? null : null}
     </div>
   );
 }
@@ -87,7 +86,6 @@ export function Setup() {
         </select>
       </Field>
       <ChannelPicker
-        detail={s.outputDetail}
         count={outDev?.maxOutputChannels ?? 0}
         selected={s.outputChannels}
         names={s.outputDetail?.outputChannelNames ?? []}
@@ -107,7 +105,6 @@ export function Setup() {
         </select>
       </Field>
       <ChannelPicker
-        detail={s.inputDetail}
         count={inDev?.maxInputChannels ?? 0}
         selected={s.inputChannels}
         names={s.inputDetail?.inputChannelNames ?? []}

@@ -15,7 +15,7 @@ window.STOATWORKS_ABOUT = Object.assign({
   "version": "v0.1.0",
   "hook": "Put an audio interface on the bench",
   "licence": "MIT",
-  "guide": "",
+  "guide": "https://stoatworks-labs.com/software/soundbench/guide/",
   "page": "https://stoatworks-labs.com/software/soundbench/",
   "repo": "https://github.com/stoatworks-labs/soundbench"
 }, window.STOATWORKS_ABOUT || {});
