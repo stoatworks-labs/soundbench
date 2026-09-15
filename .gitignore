@@ -1,0 +1,16 @@
+node_modules
+dist
+*.local
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.log
+
+# Rust / Tauri. `target/` unanchored: each crate under src-tauri/crates/
+# builds into its own target/ when built standalone.
+target/
+src-tauri/gen/schemas/
+
+# Icon source, if one is regenerated locally.
+icon-src.png

@@ -1,0 +1,18 @@
+[package]
+name = "soundbench-audio"
+description = "The device side of SoundBench: PortAudio host and device enumeration with everything each driver will say about itself, a real-time-safe duplex runner that plays a test signal and records what comes back on the same frame clock, and the test sequences built on it"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+pa-sys = { path = "../pa-sys" }
+soundbench-dsp = { path = "../soundbench-dsp" }
+serde = { version = "1", features = ["derive"] }
+thiserror = "2"
+
+[features]
+asio = ["pa-sys/asio"]
+
+[dev-dependencies]
+serde_json = "1"

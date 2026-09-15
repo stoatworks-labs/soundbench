@@ -1,0 +1,14 @@
+[package]
+name = "soundbench-dsp"
+description = "Test signals and measurements for an audio interface bench: latency by cross-correlation, response and harmonic distortion by log-sweep deconvolution, THD+N from a tone, noise floor, and glitch detection in a captured sine. Pure DSP — no I/O, no devices"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[dependencies]
+realfft = "3"
+rustfft = "6"
+serde = { version = "1", features = ["derive"] }
+
+[dev-dependencies]
+approx = "0.5"

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "SoundBench",
+  "version": "0.1.0",
+  "identifier": "com.allansargeant.soundbench",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devUrl": "http://localhost:5174",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "SoundBench",
+        "width": 1320,
+        "height": 860,
+        "minWidth": 900,
+        "minHeight": 600,
+        "resizable": true,
+        "center": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' tauri:; script-src 'self' tauri:; style-src 'self' tauri: 'unsafe-inline'; img-src 'self' tauri: data:; connect-src 'self' tauri: ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["app", "dmg", "nsis", "deb", "rpm"],
+    "category": "Utility",
+    "shortDescription": "Audio interface test bench",
+    "longDescription": "Select an audio interface and put it through a bench: everything the driver says about it, round-trip latency through a loopback cable, frequency and phase response and harmonic distortion from a log sweep, THD+N from a tone, noise floor, and which buffer sizes it runs cleanly at. CoreAudio, ASIO, WASAPI, WDM-KS, DirectSound, MME and ALSA.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "10.15",
+      "entitlements": "../scripts/mac-entitlements.plist"
+    }
+  }
+}

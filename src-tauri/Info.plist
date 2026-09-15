@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Merged into the bundle's Info.plist by tauri-bundler.
+
+  NSMicrophoneUsageDescription is not optional: macOS kills a process that
+  opens an input device without one, and attributes the crash to the audio
+  driver. The string is what the permission prompt shows.
+-->
+<plist version="1.0">
+  <dict>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>SoundBench records the test signal it plays through your audio interface, to measure the interface. Audio stays on this machine.</string>
+  </dict>
+</plist>

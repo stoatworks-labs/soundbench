@@ -1,0 +1,11 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "What the main window may do. Small on purpose: the audio work goes through the app's own commands, so the window needs only the core, a save dialog for the report, and the opener for the About window's links.",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "opener:allow-open-url",
+    "dialog:allow-save"
+  ]
+}

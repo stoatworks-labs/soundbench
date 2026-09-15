@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Hardened-runtime entitlements for the macOS bundle, read by Tauri through
+  bundle.macOS.entitlements in src-tauri/tauri.conf.json.
+
+  audio-input is the whole point. A Developer ID build is hardened, and a
+  hardened process without this entitlement is refused the input device
+  with no prompt, no error and no entry under Privacy & Security: the stream
+  opens and every sample is zero. LEQtion shipped two releases that way.
+-->
+<plist version="1.0">
+<dict>
+  <key>com.apple.security.device.audio-input</key>
+  <true/>
+</dict>
+</plist>

@@ -1,0 +1,18 @@
+[package]
+name = "pa-sys"
+description = "Raw bindings to a vendored PortAudio, built from source so the app carries every host API it can reach: CoreAudio, ASIO, WASAPI, WDM-KS, DirectSound, MME and ALSA"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+links = "portaudio"
+build = "build.rs"
+
+[build-dependencies]
+cmake = "0.1"
+
+[features]
+# Windows ASIO. The build downloads Steinberg's ASIO SDK at configure time
+# (PortAudio's own CMake does it) and links it in; nothing from the SDK is
+# checked in. Distributing the resulting binary needs Steinberg's ASIO SDK
+# Licensing Agreement, which is free but must be signed — see docs/asio.md.
+asio = []

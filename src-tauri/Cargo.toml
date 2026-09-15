@@ -1,0 +1,39 @@
+[package]
+name = "soundbench"
+version = "0.1.0"
+description = "Audio interface test bench: driver info, round-trip latency, frequency and phase response, THD+N, noise floor and buffer stability, on CoreAudio, ASIO, WASAPI, WDM-KS and ALSA"
+authors = ["Allan Sargeant"]
+edition = "2021"
+license = "MIT"
+
+[lib]
+# The `_lib` suffix looks redundant and is not: on Windows the lib and bin names
+# must differ. https://github.com/rust-lang/cargo/issues/8519
+name = "soundbench_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[workspace]
+members = ["crates/pa-sys", "crates/soundbench-dsp", "crates/soundbench-audio"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+soundbench-audio = { path = "crates/soundbench-audio" }
+soundbench-dsp = { path = "crates/soundbench-dsp" }
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[features]
+# Windows ASIO, chained through to the PortAudio build. CI's Windows job
+# turns it on; see docs/asio.md for what that implies.
+asio = ["soundbench-audio/asio"]
+
+[profile.release]
+# The sweep deconvolution is a few million-point FFTs; opt-level 3 and LTO
+# are worth having, and the binary is small either way.
+opt-level = 3
+lto = true
