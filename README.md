@@ -44,7 +44,7 @@ library happened to include:
 | Platform | Host APIs |
 | --- | --- |
 | macOS | CoreAudio |
-| Windows | WASAPI (shared and exclusive), WDM-KS, DirectSound, MME — and **ASIO** in the release build |
+| Windows | WASAPI (shared and exclusive), WDM-KS, DirectSound, MME — and **ASIO** when built with the `asio` feature |
 | Linux | ALSA |
 
 On CoreAudio the buffer size and sample rate chosen in the app are applied to the device itself
@@ -69,7 +69,8 @@ npm run app:build    # release bundle for this platform
 
 Rust stable, Node 22 and CMake are needed (CMake builds PortAudio). On Linux, `libasound2-dev`
 and the webkit2gtk stack Tauri needs. On Windows, the MSVC toolchain; add `-- --features asio`
-to either command for ASIO — see [docs/asio.md](docs/asio.md) for what that involves.
+to either command for ASIO — see [docs/asio.md](docs/asio.md) for what that involves, and
+for why the published Windows build does not carry it until Steinberg's agreement is signed.
 
 There is also a command-line bench that drives the device layer without the app:
 

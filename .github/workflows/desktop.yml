@@ -3,9 +3,14 @@
 # Same shape as aquilon-vpu-map's desktop.yml, which is the house pattern:
 # one universal macOS row (Tauri's universal-apple-darwin target compiles
 # both slices on the Apple Silicon runner and lipos them), Linux, and
-# Windows — where the ASIO feature is on, so the shipped build carries every
-# host API it can. The macOS artefact is unsigned here; the fleet's autosign
-# agent re-signs and notarises it after the release is published.
+# Windows. The macOS artefact is unsigned here; the fleet's autosign agent
+# re-signs and notarises it after the release is published.
+#
+# ASIO on Windows is gated on the repository variable SOUNDBENCH_ASIO being
+# "true". The code builds with it either way (ci.yml proves that on every
+# push), but a published binary that links Steinberg's SDK needs the ASIO SDK
+# Licensing Agreement signed first — see docs/asio.md. Set the variable once
+# that is done and the next tag ships with ASIO.
 
 name: desktop
 
@@ -34,8 +39,8 @@ jobs:
             args: ''
           - platform: windows-latest
             target: ''
-            name: Windows (ASIO)
-            args: '--features asio'
+            name: Windows
+            args: ''
 
     runs-on: ${{ matrix.platform }}
     name: ${{ matrix.name }}
@@ -64,15 +69,27 @@ jobs:
 
       - run: npm ci
 
+      - name: Decide on ASIO
+        id: asio
+        shell: bash
+        run: |
+          if [ "${{ matrix.platform }}" = "windows-latest" ] && [ "${{ vars.SOUNDBENCH_ASIO }}" = "true" ]; then
+            echo "args=--features asio" >> "$GITHUB_OUTPUT"
+            echo "ASIO is on for this build"
+          else
+            echo "args=" >> "$GITHUB_OUTPUT"
+            echo "ASIO is off for this build (SOUNDBENCH_ASIO is not 'true')"
+          fi
+
       - name: Test
         working-directory: src-tauri
-        run: cargo test --workspace ${{ matrix.platform == 'windows-latest' && '--features asio' || '' }}
+        run: cargo test --workspace ${{ steps.asio.outputs.args }}
 
       - uses: tauri-apps/tauri-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          args: ${{ matrix.args }}
+          args: ${{ matrix.args }} ${{ steps.asio.outputs.args }}
           tagName: ${{ github.ref_type == 'tag' && github.ref_name || '' }}
           releaseName: 'SoundBench __VERSION__'
           releaseDraft: false

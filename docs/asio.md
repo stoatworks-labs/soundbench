@@ -31,11 +31,12 @@ uses ASIO to have signed the agreement with Steinberg. "ASIO" is a trademark and
 Steinberg Media Technologies GmbH.
 
 **Before publishing a Windows release with ASIO on, the ASIO SDK Licensing Agreement must
-have been signed and returned to Steinberg.** The CI workflow builds with the feature on
-regardless; the agreement is a matter of paperwork, not code, and it is the maintainer's to
-do. Until then, build Windows releases without the feature (remove `--features asio` from
-`.github/workflows/desktop.yml`'s Windows row) — WASAPI exclusive mode and WDM-KS still
-give a direct path to the hardware.
+have been signed and returned to Steinberg.** So the release workflow
+(`.github/workflows/desktop.yml`) builds Windows *without* ASIO until the repository
+variable `SOUNDBENCH_ASIO` is set to `true` — the agreement is paperwork, not code, and it
+is the maintainer's to do. `ci.yml` compiles with the feature on at every push regardless,
+so the code path is always proven. Until the variable is set, a Windows release still has
+WASAPI exclusive mode and WDM-KS, both of which are a direct path to the hardware.
 
 ## What to expect from an ASIO interface
 
