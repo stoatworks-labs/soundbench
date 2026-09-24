@@ -26,9 +26,9 @@ The whole device layer: one callback that reaches CoreAudio, ASIO, WASAPI, WDM-K
 Licence: MIT or Apache-2.0  
 Copyright: The Tauri Programme within The Commons Conservancy
 
-A Cargo and npm dependency.
+A Cargo and npm dependency — of the app itself under src-tauri/, or of the desktop launcher under launcher/src-tauri/.
 
-Puts a web front end on a native Rust core using the platform's own webview, so the binary stays small and the DSP stays in Rust.
+Wraps a web front end in a native desktop app using the platform's own webview rather than a bundled browser, so the binary stays small.
 
 ### React
 
