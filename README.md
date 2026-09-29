@@ -1,4 +1,5 @@
-> **AI-assisted project.** This codebase was created with [Claude Code](https://claude.com/claude-code).
+> **AI-assisted project.** This codebase was created with [Claude](https://claude.com/claude-code)
+> (Anthropic), directed and reviewed by a human author.
 > The measurements are covered by tests that run every analysis through a simulated loopback with
 > known delay, gain, filtering and distortion, and the whole bench has been run end to end on
 > macOS against a CoreAudio device. **Windows has only been compiled, not run** — see
