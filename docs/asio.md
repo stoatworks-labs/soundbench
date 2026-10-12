@@ -1,7 +1,8 @@
 # ASIO
 
-ASIO is Windows-only, and SoundBench's release build for Windows includes it. Building it
-needs Steinberg's ASIO SDK; using it in a product needs Steinberg's agreement.
+ASIO is Windows-only, and SoundBench's Windows build includes it when built with the `asio`
+feature. The release build leaves it out until Steinberg's agreement is signed (see below).
+Building it needs Steinberg's ASIO SDK; using it in a product needs Steinberg's agreement.
 
 ## What the build does
 
