@@ -10,7 +10,7 @@ what you came to find out.
 
 ![SoundBench's Buffer stability tab after a full run: nine buffer sizes, each clean, with measured and claimed latency](screenshots/buffer-stability.png)
 
-*The Buffer stability tab after a full run against Pro Tools Audio Bridge, a virtual CoreAudio loopback rather than a hardware interface, which is why every size comes back clean and the round trip is exactly the buffer. Nine sizes from 16 to 4096 frames, each checked for xruns, for glitches in the recorded tone, and for the latency the driver claims against the one measured.*
+*The Buffer stability tab after a full run against Pro Tools Audio Bridge, a virtual CoreAudio loopback rather than a hardware interface, which is why every size comes back clean and the round trip is exactly three buffers. Nine sizes from 16 to 4096 frames, each checked for xruns, for glitches in the recorded tone, and for the latency the driver claims against the one measured.*
 
 ## Before you start
 
