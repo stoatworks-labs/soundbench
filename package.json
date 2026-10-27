@@ -22,7 +22,7 @@
     "@tauri-apps/plugin-dialog": "^2",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "zustand": "^5.0.15"
+    "zustand": "^5.0.16"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2",
@@ -30,7 +30,7 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.5",
     "@vitejs/plugin-react": "^6.1.2",
-    "oxlint": "^1.88.0",
+    "oxlint": "^1.89.0",
     "typescript": "~7.0.2",
     "vite": "^8.3.1",
     "vitest": "^5.0.5"
