@@ -36,6 +36,8 @@ which aren't always on speaking terms:
   latency, which should grow with the buffer and gives the game away when a host has ignored the
   size it was asked for without saying so.
 
+The [project page](https://stoatworks-labs.com/software/soundbench/) has the [user guide](https://stoatworks-labs.com/software/soundbench/guide/).
+
 Every test is a report: Markdown for people, and JSON with every curve for machines.
 
 ![SoundBench's Buffer stability tab after a full run: nine buffer sizes, each clean, with measured and claimed latency](docs/screenshots/buffer-stability.png)
